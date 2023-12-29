@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('singingroom_schedules', function (Blueprint $table) {
-            $table->ulid();
+            $table->ulid('id');
             $table->string('singingroom_id');
             $table->foreign('singingroom_id')->references('id')->on('singingrooms');
             $table->time('schedule_time');
-            $table->enum('reservation_status', ['Y', 'N']);
+            $table->enum('reservation_status', ['Y', 'N'])->default('N');
             $table->timestamps();
         });
     }

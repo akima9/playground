@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Singingroom;
 use App\Repositories\SingingroomRepository;
+use App\Repositories\SingingroomScheduleRepository;
 use Illuminate\Http\Request;
 
 class SingingroomController extends Controller
 {
     protected $singingroomRepository;
+    protected $singingroomScheduleRepository;
 
-    public function __construct(SingingroomRepository $singingroomRepository)
+    public function __construct(SingingroomRepository $singingroomRepository, SingingroomScheduleRepository $singingroomScheduleRepository)
     {
         $this->singingroomRepository = $singingroomRepository;
+        $this->singingroomScheduleRepository = $singingroomScheduleRepository;
     }
 
     public function index()
@@ -39,13 +42,9 @@ class SingingroomController extends Controller
 
     public function store(Request $request)
     {
-        $resp = $this->singingroomRepository->store($request);
-        
-        if ($resp) {
-            //TODO: singingroom 만들어지면, schedule 만드는 로직 추가
-            return redirect()->route('singingrooms.index');
-        }
-
-        var_dump($resp);
+        $singingroomId = $this->singingroomRepository->store($request);
+        $singingroom = $this->singingroomRepository->findById($singingroomId);
+        //TODO: singingroom 만들어지면, schedule 만드는 로직 추가
+        $this->singingroomScheduleRepository->store($singingroom);
     }
 }

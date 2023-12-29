@@ -31,6 +31,7 @@ class SingingroomRepository implements BaseRepositoryInterface
         $singingroom->room_count = $request->roomCount;
         $singingroom->start_time = $request->startTime;
         $singingroom->end_time = $request->endTime;
-        return $singingroom->save();
+        $singingroom->save();
+        return $singingroom->id;
     }
 }
