@@ -7,18 +7,9 @@
     </head>
     <body>
         <h1>Singingroom profile page.</h1>
-        <p>ID: {{$singingroom['id']}}</p>
-        <p>Name: {{$singingroom['name']}}</p>
-        <p>Address: {{$singingroom['address']}}</p>
-        <p>roomCount: {{$singingroom['roomCount']}}</p>
-        <p>startTime: {{$singingroom['startTime']}}</p>
-        <p>endTime: {{$singingroom['endTime']}}</p>
-        <hr>
-        @foreach ($singingroom['rooms'] as $room)
-            @foreach ($room['reservation'] as $reservation)
-                <p>{{$reservation}}</p>
-            @endforeach
-            <hr>
-        @endforeach
+        <p>{{$singingroom}}</p>
+        <p>name: {{$singingroom->name}}</p>
+        <p>room count: {{$singingroom->room_count}}</p>
+        <p>status: {{$singingroom->status}}</p>
     </body>
 </html>

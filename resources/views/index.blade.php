@@ -7,6 +7,11 @@
     </head>
     <body>
         <h1>Index page.</h1>
-        <a href="/singingrooms/1">코노01</a>
+        <a href="/admin/singingrooms/create">create singingroom(TEMP)</a>
+        @foreach ($singingrooms as $room)
+            <a href="/singingrooms/{{$room->id}}">
+                <p>{{$room->name}}</p>
+            </a>
+        @endforeach
     </body>
 </html>
